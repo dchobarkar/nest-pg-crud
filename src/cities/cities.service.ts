@@ -1,14 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+
 import { CreateCityDto } from './dto/create-city.dto';
 import { UpdateCityDto } from './dto/update-city.dto';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { City } from './entities/city.entity';
+import { City } from 'src/cities/entities/city.entity';
 
 @Injectable()
 export class CitiesService {
   constructor(
-    @(InjectRepository<City>)
+    @InjectRepository(City)
     private readonly citiesRepository: Repository<City>,
   ) {}
 
